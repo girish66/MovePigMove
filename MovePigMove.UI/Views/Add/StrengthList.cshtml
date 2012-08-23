@@ -1,0 +1,2 @@
+﻿@model System.Collections.Generic.IList<MovePigMove.Core.Entities.Exercise>
+@Html.DropDownList("ExerciseId", Model.Select(x => new SelectListItem { Text = x.Description, Value = x.Id.ToString()} ), "")

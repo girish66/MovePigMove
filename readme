@@ -1,0 +1,61 @@
+
+Graymatter Theme from http://www.bloggerzbible.com/2010/11/graymatter-new-htmlcss-template.html
+
+
+
+The central theme is the WORKOUT.   
+	Each workout is made up of both cardio and strength segments.
+	Each segment is based on an EXERCISE
+
+
+Application Flow.
+
+	Home Page
+		If no current workout, prompt to being workout (1a)
+		If current workout, show summmay (1b)
+
+		1a) Click button to begin.  Redirect to summary (1b)
+
+		1b) Summary
+			Show workout start date
+			Show list of strength
+			Show list of cardio
+			Button to add strength
+			BUtton to add cardio
+			Button to end workout
+
+
+	Add Cardio
+		Select exercise type from drop down
+		Add details:  Time, level, duration, notes
+		Click "Done"
+		Return to summary page
+
+	Add Strength
+		Select exercise from drop down
+		Add details:   Reps, weight, notes
+		Click "Done" 
+			Return to summary page
+		Click "Add Set"
+			Add the information
+			Reload page with same weight selected
+
+	End Workout
+		Set the end date
+		Redirect to summary
+
+	Manage Exerices
+		CRUD for baic exercise types
+			- ex type, name, description, notes
+
+
+
+
+
+
+
+
+
+
+
+

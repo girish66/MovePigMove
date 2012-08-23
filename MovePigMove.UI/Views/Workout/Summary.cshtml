@@ -1,0 +1,24 @@
+﻿
+@model MovePigMove.Core.ViewModels.WorkoutSummaryViewModel
+
+@{
+    ViewBag.Title = "Workout Summary";
+}
+
+<h2>Workout Summary</h2>
+
+@Model.StartDate<br/>
+@Model.EndDate<br/>
+@Model.Elapsed<br/>
+
+@foreach(var c in Model.Cardio)
+{
+    @c.ExerciseId <text>-</text> @c.Duration <text>-</text> @c.Level <text>-</text> @c.Notes <text>-</text> @c.PerformedAt.ToString() <br />
+}
+
+
+@foreach(var c in Model.Strength)
+{
+    @c.ExerciseId <text>-</text> @c.Repetitions <text>-</text> @c.Weight <text>-</text> @c.Notes <text>-</text> @c.PerformedAt.ToString() <br />
+}
+

@@ -1,0 +1,4 @@
+﻿namespace MovePigMove.Core.Documents
+{
+
+}

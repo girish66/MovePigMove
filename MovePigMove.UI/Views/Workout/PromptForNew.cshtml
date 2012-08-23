@@ -1,0 +1,19 @@
+﻿@model dynamic
+
+@{
+    ViewBag.Title = "Create new workout?";
+}
+
+<h2>Create new workout?</h2>
+
+Would you like to start a new workout?
+
+@using(Html.BeginForm("StartNew", "Workout", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <input type="submit" value="Yes"/><br />
+    <input type="submit" value="No"/>
+}
+
+
+

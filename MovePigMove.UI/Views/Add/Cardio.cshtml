@@ -1,0 +1,24 @@
+﻿@model MovePigMove.UI.InputModels.AddCardioInputModel
+
+@{
+    ViewBag.Title = "Add Cardio";
+}
+
+<h2>Add Cardio</h2>
+
+@using(Html.BeginForm("Cardio", "Add", FormMethod.Post))
+{
+Ex:
+    @Html.RenderAction("CardioList");
+    <br/>
+    @Html.LabelFor(m => m.Duration)
+    @Html.TextBoxFor(m => m.Duration)
+    <br/>
+    @Html.LabelFor(m => m.Level)
+    @Html.TextBoxFor(m => m.Level)
+    <br/>
+    @Html.LabelFor(x => x.Notes)
+    @Html.TextAreaFor(x => x.Notes)
+    <br/>
+    <input type="submit" value="Add"/>
+}

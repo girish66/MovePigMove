@@ -1,0 +1,24 @@
+﻿@model MovePigMove.UI.InputModels.AddStrengthInputModel
+
+@{
+    ViewBag.Title = "Add Cardio";
+}
+
+<h2>Add Strength</h2>
+
+@using(Html.BeginForm("Strength", "Add", FormMethod.Post))
+{
+Ex:
+    @Html.RenderAction("StrengthList");
+    <br/>
+    @Html.LabelFor(m => m.Weight)
+    @Html.TextBoxFor(m => m.Weight)
+    <br/>
+    @Html.LabelFor(m => m.Repetitions)
+    @Html.TextBoxFor(m => m.Repetitions)
+    <br/>
+    @Html.LabelFor(x => x.Notes)
+    @Html.TextAreaFor(x => x.Notes)
+    <br/>
+    <input type="submit" value="Add"/>
+}
