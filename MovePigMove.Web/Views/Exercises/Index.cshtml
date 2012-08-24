@@ -1,0 +1,42 @@
+﻿@model MovePigMove.Core.ViewModels.ExerciseListViewModel
+
+@{
+    ViewBag.Title = "title";
+}
+
+<div class="post_title">
+    <h1>Exercise List</h1>
+    <span>Posted by <a href="#" title="John Smith">John Smith</a> on July 5th in <a href="#" title="General">General</a>.</span>
+</div>
+
+
+
+<table>
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+        </tr>
+    </thead>
+    @foreach(var ex in Model.ExerciseList)
+    {
+        <tr>
+            <td>@Html.ActionLink(ex.Description, "Edit", "Exercises", new  {exid=ex.Id}, null)</td>
+            <td>@ex.ExerciseType</td>
+        </tr>
+    }
+</table>
+
+
+@Html.ValidationSummary("Please check the following items")
+
+@using(Html.BeginForm("Add", "Exercises", FormMethod.Post))
+{
+    <label for="description">New</label>
+    @Html.TextBox("Description", Model.AddExerciseInput.Description)
+    <select name="type" id="type">
+        <option value="strength">Strength</option>
+        <option value="cardio">Cardio</option>
+    </select>
+    <input type="submit" value="Add" />
+}

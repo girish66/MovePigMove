@@ -1,0 +1,35 @@
+﻿@model MovePigMove.Core.ViewModels.WorkoutSummaryViewModel
+
+@{
+    ViewBag.Title = "Current Workout";
+}
+
+<h2>Current Workout</h2>
+
+@Html.ActionLink("Add Cardio", "Cardio", "Add") | @Html.ActionLink("Add Strength", "Strength", "Add")
+
+<br/>
+@Model.StartDate<br/>
+@Model.EndDate<br/>
+@Model.Elapsed<br/>
+
+@foreach(var c in Model.Cardio)
+{
+    @c.ExerciseId <text>-</text> @c.Duration <text>-</text> @c.Level <text>-</text> @c.Notes <text>-</text> @c.PerformedAt.ToString() <br />
+}
+
+
+@foreach(var c in Model.Strength)
+{
+    @c.ExerciseId <text>-</text> @c.Repetitions <text>-</text> @c.Weight <text>-</text> @c.Notes <text>-</text> @c.PerformedAt.ToString() <br />
+}
+
+
+@if(Model.PromptForEnd)
+{
+     using(Html.BeginForm("End", "Workout", FormMethod.Post))
+     {
+        @Html.AntiForgeryToken()
+        <input type="submit" id="end" value="end"/> 
+     }
+}

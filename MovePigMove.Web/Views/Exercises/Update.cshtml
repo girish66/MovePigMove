@@ -1,0 +1,21 @@
+﻿@model Tracker.UI.Models.InputModels.UpdateExerciseModel
+
+@{
+    ViewBag.Title = "Update";
+}
+
+<h2>Update</h2>
+
+@using(Html.BeginForm("Update", "Ex", FormMethod.Post))
+{
+    @Html.HiddenFor(x => x.Id);
+    @Html.TextBoxFor(x => x.Description)
+
+    <select name="type" id="type">
+        <option value="strength">Strength</option>
+        <option value="cardio">Cardio</option>
+    </select>
+    
+    <input type="submit" value="Update"/>
+
+}
