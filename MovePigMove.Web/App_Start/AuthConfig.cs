@@ -27,6 +27,9 @@ namespace MovePigMove.Web
             //    appSecret: "");
 
             //OAuthWebSecurity.RegisterGoogleClient();
+            OAuthWebSecurity.RegisterGoogleClient("Google");
+            
+            //OpenAuth.AuthenticationClients.AddGoogle
         }
     }
 }
