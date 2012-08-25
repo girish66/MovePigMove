@@ -5,13 +5,43 @@
 }
 
 <h2>Current Workout</h2>
+@Model.Elapsed<br/>
 
 @Html.ActionLink("Add Cardio", "Cardio", "Add") | @Html.ActionLink("Add Strength", "Strength", "Add")
 
 <br/>
-@Model.StartDate<br/>
-@Model.EndDate<br/>
-@Model.Elapsed<br/>
+
+@if (Model.EndDate.HasValue)
+{
+    <text>Started at </text>@Model.StartDate<br/>
+    <text>Ended at </text>@Model.EndDate<br/>     
+}
+
+
+@if (Model.Cardio.Any())
+{
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Level</th>
+                <th>Duration</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        @foreach(var c in Model.Cardio)
+        {
+            <tr>
+                <td>@c.ExerciseId</td>
+                <td>@c.Level</td>
+                <td>@c.Duration</td>
+                <td>@c.Notes</td>
+            </tr>
+        }
+    </table>
+}
+
+
 
 @foreach(var c in Model.Cardio)
 {
@@ -30,6 +60,6 @@
      using(Html.BeginForm("End", "Workout", FormMethod.Post))
      {
         @Html.AntiForgeryToken()
-        <input type="submit" id="end" value="end"/> 
+        <input type="submit" id="end" value="End Workout"/> 
      }
 }

@@ -6,13 +6,13 @@
 
 <h2>Create new workout?</h2>
 
-Would you like to start a new workout?
+You don't have a current workout in progress.
 
 @using(Html.BeginForm("StartNew", "Workout", FormMethod.Post))
 {
     @Html.AntiForgeryToken()
-    <input type="submit" value="Yes"/><br />
-    <input type="submit" value="No"/>
+    <input type="submit" value="Let's Get Started!"/> 
+    @*<input type="submit" value="No"/>*@
 }
 
 
