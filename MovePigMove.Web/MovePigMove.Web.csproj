@@ -166,10 +166,13 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AccountOriginalController.cs" />
     <Compile Include="Controllers\AddController.cs" />
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\ExercisesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MembershipException.cs" />
+    <Compile Include="Controllers\PiggyProvider.cs" />
     <Compile Include="Controllers\WorkoutController.cs" />
     <Compile Include="Filters\InitializeSimpleMembershipAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -275,15 +278,15 @@
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
     <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Account\_ChangePasswordPartial.cshtml" />
-    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Views\Account\_RemoveExternalLoginsPartial.cshtml" />
-    <Content Include="Views\Account\_SetPasswordPartial.cshtml" />
-    <Content Include="Views\Account\Login.cshtml" />
-    <Content Include="Views\Account\Manage.cshtml" />
-    <Content Include="Views\Account\Register.cshtml" />
-    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
-    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\AccountOriginal\_ChangePasswordPartial.cshtml" />
+    <Content Include="Views\AccountOriginal\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\AccountOriginal\_RemoveExternalLoginsPartial.cshtml" />
+    <Content Include="Views\AccountOriginal\_SetPasswordPartial.cshtml" />
+    <Content Include="Views\AccountOriginal\Login.cshtml" />
+    <Content Include="Views\AccountOriginal\Manage.cshtml" />
+    <Content Include="Views\AccountOriginal\Register.cshtml" />
+    <Content Include="Views\AccountOriginal\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\AccountOriginal\ExternalLoginConfirmation.cshtml" />
     <Content Include="Views\Home\About.cshtml" />
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -305,6 +308,11 @@
     <Content Include="Views\Workout\Index.cshtml" />
     <Content Include="Views\Workout\PromptForNew.cshtml" />
     <Content Include="Views\Workout\Summary.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Views\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Views\Account\Manage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
