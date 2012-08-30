@@ -12,6 +12,11 @@ namespace MovePigMove.Core.Storage
     {
         private IDocumentSession _documentSession;
 
+        protected IDocumentSession DocumentSession
+        {
+            get { return _documentSession; }
+        }
+
         public BaseRepository(IDocumentSession documentSession)
         {
             _documentSession = documentSession;
@@ -22,7 +27,7 @@ namespace MovePigMove.Core.Storage
             _documentSession.Store(item.GetInnerModel());
         }
 
-        public void Remove(TEntity item)
+        public virtual void Remove(TEntity item)
         {
             _documentSession.Delete(item.GetInnerModel());
         }

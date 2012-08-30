@@ -4,7 +4,7 @@ using MovePigMove.Core.CommandHandlers;
 using MovePigMove.Core.Commands;
 using MovePigMove.Core.Entities;
 using MovePigMove.Core.ViewModels;
-using MovePigMove.UI.Controllers;
+using MovePigMove.Web.Controllers;
 using NUnit.Framework;
 using Should;
 

@@ -97,11 +97,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Bootstrapper.cs" />
+    <Compile Include="CommandHandlers\AbstractUserProfileCommand.cs" />
     <Compile Include="CommandHandlers\AddCardioCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddExerciseCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddStrengthCommandHandler.cs" />
     <Compile Include="CommandHandlers\BootstrapCommandHandler.cs" />
-    <Compile Include="CommandHandlers\CreateUserProfileCommand.cs" />
+    <Compile Include="CommandHandlers\ChangeUserNameCommandHandler.cs" />
+    <Compile Include="CommandHandlers\CreateAbstractUserProfileCommand.cs" />
+    <Compile Include="CommandHandlers\ChangeUserNameCommand.cs" />
+    <Compile Include="CommandHandlers\CreateUserProfileCommandHandler.cs" />
+    <Compile Include="CommandHandlers\DeleteAccountCommand.cs" />
+    <Compile Include="CommandHandlers\DeleteAccountCommandHandler.cs" />
     <Compile Include="CommandHandlers\EndWorkoutCommandHandler.cs" />
     <Compile Include="Commands\AddCardioCommand.cs" />
     <Compile Include="Commands\AddStrengthCommand.cs" />

@@ -82,9 +82,9 @@
       <Project>{A8D32F99-2861-4137-BC0A-60D4F3BA55B3}</Project>
       <Name>MovePigMove.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\MovePigMove.UI\MovePigMove.UI.csproj">
-      <Project>{B18EA9F6-22D5-4C63-BFC2-8CBD99EF617A}</Project>
-      <Name>MovePigMove.UI</Name>
+    <ProjectReference Include="..\MovePigMove.Web\MovePigMove.Web.csproj">
+      <Project>{A19FEF75-7D21-4C6A-AF79-92710A8F0843}</Project>
+      <Name>MovePigMove.Web</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

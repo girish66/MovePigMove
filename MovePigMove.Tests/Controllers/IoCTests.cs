@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 using Moq;
 using MovePigMove.Core.StructureMap;
+using MovePigMove.Web.Controllers;
 using NUnit.Framework;
-using MovePigMove.UI.Controllers;
 using Raven.Client;
 using StructureMap;
 

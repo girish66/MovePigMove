@@ -1,7 +1,7 @@
 ﻿using System.Web.Mvc;
 using MovePigMove.Core.Commands;
-using MovePigMove.UI.Controllers;
-using MovePigMove.UI.InputModels;
+using MovePigMove.Web.Controllers;
+using MovePigMove.Web.InputModels;
 using Should;
 using Moq;
 using MovePigMove.Core.CommandHandlers;

@@ -1,63 +1,15 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
-using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
 using DotNetOpenAuth.AspNet;
 using Microsoft.Web.WebPages.OAuth;
-//using WebMatrix.WebData;
-using MovePigMove.Core.CommandHandlers;
-using MovePigMove.Core.Documents;
-using MovePigMove.Core.Storage;
 using MovePigMove.Web.Models;
+
 
 namespace MovePigMove.Web.Controllers
 {
-    public class AuthenticationService
-    {
-        private IUserProfileRepository _profileRepository;
-        private ICommandInvoker _invoker;
-
-        public AuthenticationService(IUserProfileRepository profileRepository, ICommandInvoker invoker)
-        {
-            _profileRepository = profileRepository;
-            _invoker = invoker;
-        }
-
-        public bool Login(string providerName, string provderUserId, bool createPersistentCookie)
-        {
-            var account = LoadAccountBasedOnExternalCredentials(providerName, provderUserId);
-
-            if (account != null)
-            {
-                FormsAuthentication.SetAuthCookie(provderUserId, createPersistentCookie);
-                return true;
-            }
-
-            return false;
-        }
-
-        public void CreateAccount(string providerName, string providerUserId, string userName)
-        {
-            var command = new CreateUserProfileCommand(providerUserId, providerName, userName);
-            _invoker.Execute(command);
-        }
-
-        private Core.Entities.UserProfile LoadAccountBasedOnExternalCredentials(string providerName, string providerUserId)
-        {
-            return
-                _profileRepository.Where(new FindUserByProviderAndProviderIdQuery(providerName, providerUserId)).
-                    SingleOrDefault();
-        }
-
-        public bool UserNameExists(string userName)
-        {
-            return _profileRepository.Where(new FindUserByUserNameQuery(userName)).FirstOrDefault() != null;
-        }
-    }
-
-
     [Authorize]
     public class AccountController : BaseController
     {
@@ -94,24 +46,32 @@ namespace MovePigMove.Web.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Disassociate(string provider, string providerUserId)
         {
-            string ownerAccount = OAuthWebSecurity.GetUserName(provider, providerUserId);
+            
+            string ownerAccount = _authService.GetUserName(provider, providerUserId);
             ManageMessageId? message = null;
 
             // Only disassociate the account if the currently logged in user is the owner
             if (ownerAccount == User.Identity.Name)
             {
                 // Use a transaction to prevent the user from deleting their last login credential
-                using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                //using (var scope = new TransactionScope(TransactionScopeOption.Required, new TransactionOptions { IsolationLevel = IsolationLevel.Serializable }))
+                //{
+                    _authService.DeleteAccount(provider, providerUserId);
+                //    scope.Complete();
+                //}
+
+                var otherAccounts = _authService.GetAccountsFromUserName(User.Identity.Name);
+                if (!otherAccounts.Any())
                 {
-                    throw new Exception("When does this happen?");
-                    //bool hasLocalAccount = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-                    //if (hasLocalAccount || OAuthWebSecurity.GetAccountsFromUserName(User.Identity.Name).Count > 1)
-                    //{
-                    //    OAuthWebSecurity.DeleteAccount(provider, providerUserId);
-                    //    scope.Complete();
-                    //    message = ManageMessageId.RemoveLoginSuccess;
-                   // }
+                    _authService.SignOut();
+                    
+                    message = ManageMessageId.RemoveLoginSuccess;
                 }
+                else
+                {
+                    throw new NotImplementedException("Shouldnt have more than a single google account");
+                }
+                
             }
 
             return RedirectToAction("Manage", new { Message = message });
@@ -124,8 +84,8 @@ namespace MovePigMove.Web.Controllers
                     : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
                           : message == ManageMessageId.RemoveLoginSuccess ? "The external login was removed."
                                 : "";
-            //ViewBag.HasLocalPassword = OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
-            throw new Exception("When does this happen?");
+
+            ViewBag.HasLocalPassword = false; //we dont store local accounts OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
             ViewBag.ReturnUrl = Url.Action("Manage");
             return View();
         }
@@ -154,10 +114,9 @@ namespace MovePigMove.Web.Controllers
 
             if (User.Identity.IsAuthenticated)
             {
-                // If the current user is logged in add the new account
-                throw new Exception("When does this happen?");
-                //OAuthWebSecurity.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
-                //return RedirectToLocal(returnUrl);
+                // If the current user is logged in update the new account
+                _authService.CreateOrUpdateAccount(result.Provider, result.ProviderUserId, User.Identity.Name);
+                return RedirectToLocal(returnUrl);
             }
             else
             {
@@ -187,7 +146,7 @@ namespace MovePigMove.Web.Controllers
 
                 if (!_authService.UserNameExists(model.UserName))
                 {
-                    _authService.CreateAccount(provider, providerUserId, model.UserName);
+                    _authService.CreateOrUpdateAccount(provider, providerUserId, model.UserName);
                     _authService.Login(provider, providerUserId, createPersistentCookie: false);
                     return RedirectToLocal(returnUrl);
                 }
@@ -244,6 +203,26 @@ namespace MovePigMove.Web.Controllers
             }
         }
 
+        [ChildActionOnly]
+        public ActionResult RemoveExternalLogins()
+        {
+            ICollection<OAuthAccount> accounts = _authService.GetAccountsFromUserName(User.Identity.Name);
+            List<ExternalLogin> externalLogins = new List<ExternalLogin>();
+            foreach (OAuthAccount account in accounts)
+            {
+                AuthenticationClientData clientData =  OAuthWebSecurity.GetOAuthClientData(account.Provider);
+
+                externalLogins.Add(new ExternalLogin
+                {
+                    Provider = account.Provider,
+                    ProviderDisplayName = clientData.DisplayName,
+                    ProviderUserId = account.ProviderUserId,
+                });
+            }
+
+            ViewBag.ShowRemoveButton = externalLogins.Count > 0 ;//|| OAuthWebSecurity.HasLocalAccount(WebSecurity.GetUserId(User.Identity.Name));
+            return PartialView("_RemoveExternalLoginsPartial", externalLogins);
+        }
 
 
 
