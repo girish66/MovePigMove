@@ -11,11 +11,11 @@ using MovePigMove.Web.Models;
 namespace MovePigMove.Web.Controllers
 {
     [Authorize]
-    public class AccountController : BaseController
+    public class AccountNewController : BaseController
     {
         private AuthenticationService _authService;
 
-        public AccountController(AuthenticationService authService)
+        public AccountNewController(AuthenticationService authService)
         {
             _authService = authService;
         }

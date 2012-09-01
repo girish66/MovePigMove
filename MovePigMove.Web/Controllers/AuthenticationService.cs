@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Security.Principal;
 using System.Web.Security;
 using Microsoft.Web.WebPages.OAuth;
 using MovePigMove.Core.CommandHandlers;

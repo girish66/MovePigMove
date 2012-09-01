@@ -13,8 +13,8 @@ using WebMatrix.WebData;
 namespace MovePigMove.Web.Controllers
 {
     [Authorize]
-    [InitializeSimpleMembership]
-    public class AccountOriginalController : Controller
+    //[InitializeSimpleMembership]
+    public class AccountController : Controller
     {
         //
         // GET: /Account/Login
