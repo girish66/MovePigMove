@@ -102,12 +102,6 @@
     <Compile Include="CommandHandlers\AddExerciseCommandHandler.cs" />
     <Compile Include="CommandHandlers\AddStrengthCommandHandler.cs" />
     <Compile Include="CommandHandlers\BootstrapCommandHandler.cs" />
-    <Compile Include="CommandHandlers\ChangeUserNameCommandHandler.cs" />
-    <Compile Include="CommandHandlers\CreateAbstractUserProfileCommand.cs" />
-    <Compile Include="CommandHandlers\ChangeUserNameCommand.cs" />
-    <Compile Include="CommandHandlers\CreateUserProfileCommandHandler.cs" />
-    <Compile Include="CommandHandlers\DeleteAccountCommand.cs" />
-    <Compile Include="CommandHandlers\DeleteAccountCommandHandler.cs" />
     <Compile Include="CommandHandlers\EndWorkoutCommandHandler.cs" />
     <Compile Include="Commands\AddCardioCommand.cs" />
     <Compile Include="Commands\AddStrengthCommand.cs" />
@@ -121,14 +115,13 @@
     <Compile Include="Commands\UpdateExerciseCommand.cs" />
     <Compile Include="Documents\ExerciseDocument.cs" />
     <Compile Include="Documents\IdUtil.cs" />
-    <Compile Include="Documents\UserProfileDocument.cs" />
     <Compile Include="Documents\WorkoutDocument.cs" />
     <Compile Include="Entities\CardioSegment.cs" />
     <Compile Include="Entities\IDomainEntity.cs" />
     <Compile Include="Entities\Exercise.cs" />
     <Compile Include="Entities\ExerciseType.cs" />
+    <Compile Include="Entities\Provider.cs" />
     <Compile Include="Entities\StrengthSegment.cs" />
-    <Compile Include="Entities\UserProfile.cs" />
     <Compile Include="Entities\Workout.cs" />
     <Compile Include="Extensions.cs" />
     <Compile Include="IViewFactory.cs" />
@@ -137,7 +130,6 @@
     <Compile Include="Storage\BaseRepository.cs" />
     <Compile Include="Storage\IExerciseRepository.cs" />
     <Compile Include="Storage\IRepository.cs" />
-    <Compile Include="Storage\IUserProfileRepository.cs" />
     <Compile Include="Storage\IWorkoutRepository.cs" />
     <Compile Include="StructureMap\ApplicationRegistry.cs" />
     <Compile Include="StructureMap\Conventions\RegisterFirstInstanceOfInterface.cs" />

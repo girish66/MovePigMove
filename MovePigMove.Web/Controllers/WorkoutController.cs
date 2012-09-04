@@ -4,7 +4,6 @@ using MovePigMove.Core;
 using MovePigMove.Core.CommandHandlers;
 using MovePigMove.Core.Commands;
 using MovePigMove.Core.Entities;
-using MovePigMove.Core.Storage;
 using MovePigMove.Core.ViewModels;
 
 namespace MovePigMove.Web.Controllers
@@ -14,16 +13,12 @@ namespace MovePigMove.Web.Controllers
         private readonly IWorkoutService _workoutService;
         private readonly ICommandInvoker _commandInvoker;
         private readonly IViewFactory<int, WorkoutSummaryViewModel> _viewFactory;
-        private readonly Core.Storage.IUserProfileRepository _userRepo;
-        
 
-
-        public WorkoutController(IWorkoutService workoutService, ICommandInvoker commandInvoker, IViewFactory<int, WorkoutSummaryViewModel> viewFactory, IUserProfileRepository userRepo)
+        public WorkoutController(IWorkoutService workoutService, ICommandInvoker commandInvoker, IViewFactory<int, WorkoutSummaryViewModel> viewFactory)
         {
             _workoutService = workoutService;
             _commandInvoker = commandInvoker;
             _viewFactory = viewFactory;
-            _userRepo = userRepo;
         }
 
         [HttpGet]

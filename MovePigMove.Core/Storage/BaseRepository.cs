@@ -85,37 +85,7 @@ namespace MovePigMove.Core.Storage
         }
     }
 
-    public class FindUserByUserNameQuery : Query<UserProfile>
-    {
-        private readonly string _userName;
 
-        public FindUserByUserNameQuery(string userName)
-        {
-            this._userName = userName;
-        }
 
-        public override bool IsMatch(UserProfile entity)
-        {
-            return entity.UserName.Equals(_userName, StringComparison.InvariantCultureIgnoreCase);
-        }
-    }
-
-    public class FindUserByProviderAndProviderIdQuery : Query<UserProfile>
-    {
-        private string _providerName;
-        private string _providerUserId;
-
-        public FindUserByProviderAndProviderIdQuery(string providerName, string providerUserId)
-        {
-            _providerName = providerName;
-            _providerUserId = providerUserId;
-        }
-
-        public override bool IsMatch(UserProfile entity)
-        {
-            return entity.ProviderName.Equals(_providerName, StringComparison.InvariantCultureIgnoreCase) &&
-                   entity.ProviderUserId.Equals(_providerUserId);
-        }
-    }
 
 }
