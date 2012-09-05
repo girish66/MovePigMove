@@ -16,7 +16,7 @@ namespace MovePigMove.Core.CommandHandlers
 
         public void Handle(BeginWorkoutCommand command)
         {
-            var dataModel = new WorkoutDocument {StartDate = command.StartDate};
+            var dataModel = new WorkoutDocument {StartDate = command.StartDate, UserId = command.UserId};
             _workoutRepository.Add(new Workout(dataModel));
         }
     }

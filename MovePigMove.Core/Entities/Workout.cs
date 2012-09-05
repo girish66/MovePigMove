@@ -30,7 +30,11 @@ namespace MovePigMove.Core.Entities
         public DateTime StartDate
         {
             get { return _dataModel.StartDate; }
-            
+        }
+
+        public string UserId
+        {
+            get { return _dataModel.UserId; }
         }
 
         public void AddCardioSegment(CardioSegment cardioSegment)
@@ -52,7 +56,6 @@ namespace MovePigMove.Core.Entities
         {
             return _dataModel;
         }
-
         
     }
 }

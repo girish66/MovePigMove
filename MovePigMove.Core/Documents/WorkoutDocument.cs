@@ -9,6 +9,7 @@ namespace MovePigMove.Core.Documents
         public DateTime? EndDate { get; set; }
         public DateTime StartDate { get; set; }
         public int Id { get; set; }
+        public string UserId { get; set; }
         public List<CardioSegment> Cardio { get; set; }
         public List<StrengthSegment> Strength { get; set; }
 

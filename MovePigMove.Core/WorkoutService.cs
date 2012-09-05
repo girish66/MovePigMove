@@ -27,7 +27,7 @@ namespace MovePigMove.Core
 
         public Workout CurrentWorkout()
         {
-            var query = new OpenWorkoutQuery();
+            var query = new OpenWorkoutQuery(System.Threading.Thread.CurrentPrincipal.Identity.Name);
             var current = _repository.Where(query) ?? new List<Workout>();
             return current.SingleOrDefault();
         }

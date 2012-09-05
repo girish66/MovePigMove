@@ -76,7 +76,6 @@ namespace MovePigMove.Web.Controllers
             list.Add(new AddExerciseCommand("Elliptical", ExerciseType.Cardio));
             list.Add(new AddExerciseCommand("Recumbent Bicycle", ExerciseType.Cardio));
             list.Add(new AddExerciseCommand("Treadmill", ExerciseType.Cardio));
-
             list.Add(new AddExerciseCommand("Bench Press", ExerciseType.Strength));
             list.Add(new AddExerciseCommand("Seated Row", ExerciseType.Strength));
             list.Add(new AddExerciseCommand("Bicep Curl", ExerciseType.Strength));
