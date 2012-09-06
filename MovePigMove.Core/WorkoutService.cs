@@ -34,7 +34,7 @@ namespace MovePigMove.Core
 
         public void BeginNew()
         {
-            var command = new BeginWorkoutCommand();
+            var command = new BeginWorkoutCommand(System.Threading.Thread.CurrentPrincipal.Identity.Name);
             _commandInvoker.Execute(command);
         }
 

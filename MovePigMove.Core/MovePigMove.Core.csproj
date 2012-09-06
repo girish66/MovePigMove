@@ -112,6 +112,7 @@
     <Compile Include="CommandHandlers\ICommandInvoker.cs" />
     <Compile Include="CommandHandlers\UpdateExerciseCommandHandler.cs" />
     <Compile Include="Commands\AddExerciseCommand.cs" />
+    <Compile Include="Commands\EndWorkoutCommand.cs" />
     <Compile Include="Commands\UpdateExerciseCommand.cs" />
     <Compile Include="Documents\ExerciseDocument.cs" />
     <Compile Include="Documents\IdUtil.cs" />

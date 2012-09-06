@@ -13,14 +13,4 @@ namespace MovePigMove.Core.Commands
             StartDate = DateTime.Now;
         }
     }
-
-    public class EndWorkoutCommand
-    {
-        public DateTime EndDate  {get;set;}
-
-        public EndWorkoutCommand()
-        {
-            EndDate = DateTime.Now;
-        }
-    }
 }
