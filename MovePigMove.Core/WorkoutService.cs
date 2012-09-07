@@ -8,12 +8,6 @@ using MovePigMove.Core.Storage;
 
 namespace MovePigMove.Core
 {
-    public interface IWorkoutService
-    {
-        Workout CurrentWorkout();
-        void BeginNew();
-    }
-
     public class WorkoutService : IWorkoutService
     {
         private readonly IWorkoutRepository _repository;

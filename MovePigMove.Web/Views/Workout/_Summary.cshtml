@@ -1,0 +1,33 @@
+﻿@model IList<MovePigMove.Core.Entities.Workout>
+
+@Model.Count
+
+@foreach(var w in Model)
+{
+    @w.StartDate <text>-</text> @w.EndDate
+    <br/>
+    
+    if (w.CardioSegments.Count() > 0)
+    {
+        <strong>Cardio</strong>
+        <br />
+        foreach(var ex in w.CardioSegments)
+        {
+            @ex.ExerciseId <text>for</text> @ex.Duration <text>minutes.</text><br/>
+        }
+    }
+    
+    if (w.StrengthSegments.Count() > 0)
+    {
+        <strong>Strength</strong>
+        <br/>
+        foreach (var ex in w.StrengthSegments)
+        {
+            @ex.ExerciseId <text>of</text> @ex.Repetitions <text>at</text> @ex.Weight <br />
+        }
+        
+    }
+    
+    <hr />
+}
+

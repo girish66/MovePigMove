@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using MovePigMove.Core.Entities;
+using MovePigMove.Core.Queries;
 
 namespace MovePigMove.Core.Storage
 {

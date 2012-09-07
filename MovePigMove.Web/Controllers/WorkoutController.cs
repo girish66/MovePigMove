@@ -13,12 +13,16 @@ namespace MovePigMove.Web.Controllers
         private readonly IWorkoutService _workoutService;
         private readonly ICommandInvoker _commandInvoker;
         private readonly IViewFactory<int, WorkoutSummaryViewModel> _viewFactory;
+        private readonly IViewFactory<string, IList<Workout>> _workoutViewFactory;
+        private readonly UserIdProvider _idProvider;
 
-        public WorkoutController(IWorkoutService workoutService, ICommandInvoker commandInvoker, IViewFactory<int, WorkoutSummaryViewModel> viewFactory)
+        public WorkoutController(IWorkoutService workoutService, ICommandInvoker commandInvoker, IViewFactory<int, WorkoutSummaryViewModel> viewFactory, IViewFactory<string, IList<Workout>> workoutViewFactory, UserIdProvider idProvider)
         {
             _workoutService = workoutService;
             _commandInvoker = commandInvoker;
             _viewFactory = viewFactory;
+            _workoutViewFactory = workoutViewFactory;
+            _idProvider = idProvider;
         }
 
         [HttpGet]
@@ -88,6 +92,12 @@ namespace MovePigMove.Web.Controllers
             return null;
         }
 
+        [ChildActionOnly]
+        public PartialViewResult _Summary()
+        {
+            IList<Workout> model = _workoutViewFactory.Load(_idProvider.UserId());
+            return PartialView(model);
+        }
 
 
 

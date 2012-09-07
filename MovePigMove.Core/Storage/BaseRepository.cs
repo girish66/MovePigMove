@@ -2,6 +2,7 @@ using System;
 using System.Linq;
 using System.Collections.Generic;
 using MovePigMove.Core.Documents;
+using MovePigMove.Core.Queries;
 using Raven.Client;
 using MovePigMove.Core.Entities;
 
@@ -51,41 +52,11 @@ namespace MovePigMove.Core.Storage
 
         public IList<TEntity> Where(Query<TEntity> query)
         {
-            return List().Where(query.IsMatch).ToList();
+            var list = List();
+            var match = list.Where(query.IsMatch);
+            return match.ToList();
         }
 
         protected abstract TEntity CreateFromDataModel(TDataModel dataModel);
     }
-
-    public abstract class Query<TEntity> 
-    {
-        public abstract bool IsMatch(TEntity entity);
-    }
-
-    public class ExerciseWithNoNameQuery : Query<Exercise>
-    {
-        public override bool IsMatch(Exercise entity)
-        {
-            return string.IsNullOrWhiteSpace(entity.Description);
-        }
-    }
-
-    public class ExerciseTypeQuery : Query<Exercise>
-    {
-        private ExerciseType _exerciseType;
-
-        public ExerciseTypeQuery(ExerciseType exerciseType)
-        {
-            _exerciseType = exerciseType;
-        }
-
-        public override bool IsMatch(Exercise entity)
-        {
-            return entity.ExerciseType == _exerciseType;
-        }
-    }
-
-
-
-
 }
