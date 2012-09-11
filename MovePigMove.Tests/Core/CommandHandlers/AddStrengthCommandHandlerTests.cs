@@ -20,7 +20,7 @@ namespace MovePigMove.Tests.Core.CommandHandlers
             var workOut = new Workout(new WorkoutDocument());
             var ws = new Mock<IWorkoutService>();
             var handler = new AddStrengthCommandHandler(ws.Object);
-            var command = new AddStrengthCommand { Weight = 20, ExerciseId = "ex/1", Repetitions= 99, Notes = "foo" };
+            var command = new AddStrengthCommand { Weight = 20, ExerciseId = 1, Repetitions= 99, Notes = "foo" };
             ws.Setup(x => x.CurrentWorkout()).Returns(workOut);
 
             handler.Handle(command);
@@ -33,7 +33,7 @@ namespace MovePigMove.Tests.Core.CommandHandlers
         {
             var ws = new Mock<IWorkoutService>();
             var handler = new AddStrengthCommandHandler(ws.Object);
-            var command = new AddStrengthCommand { Weight = 20, ExerciseId = "ex/1", Repetitions = 99, Notes = "foo" };
+            var command = new AddStrengthCommand { Weight = 20, ExerciseId = 1, Repetitions = 99, Notes = "foo" };
             ws.Setup(x => x.CurrentWorkout()).Returns<Workout>(null);
 
             Assert.Throws<ApplicationException>(() => handler.Handle(command));

@@ -19,7 +19,7 @@ namespace MovePigMove.Tests.Controllers
             {
                 var invoker = new Mock<ICommandInvoker>();
                 var controller = new AddController(invoker.Object, null);
-                var input = new AddCardioInputModel {ExerciseId = "ex/1", Level = 1, Duration = 45, Notes = string.Empty};
+                var input = new AddCardioInputModel {ExerciseId = 1, Level = 1, Duration = 45, Notes = string.Empty};
 
                 var result = controller.Cardio(input);
 
@@ -32,7 +32,7 @@ namespace MovePigMove.Tests.Controllers
             {
                 var invoker = new Mock<ICommandInvoker>();
                 var controller = new AddController(invoker.Object, null);
-                var input = new AddCardioInputModel { ExerciseId = "ex/1", Level = 1, Duration = 45, Notes = string.Empty };
+                var input = new AddCardioInputModel { ExerciseId = 1, Level = 1, Duration = 45, Notes = string.Empty };
 
                 var result = (RedirectToRouteResult)controller.Cardio(input);
                 result.RouteValues["action"].ShouldEqual("Index");
@@ -44,7 +44,7 @@ namespace MovePigMove.Tests.Controllers
                 var invoker = new Mock<ICommandInvoker>();
                 var controller = new AddController(invoker.Object, null);
                 controller.ModelState.AddModelError("Level", "foo");
-                var input = new AddCardioInputModel { ExerciseId = "ex/1", Level = 1, Duration = 45, Notes = string.Empty };
+                var input = new AddCardioInputModel { ExerciseId = 1, Level = 1, Duration = 45, Notes = string.Empty };
 
                 var res = (ViewResult) controller.Cardio(input);
 
@@ -61,7 +61,7 @@ namespace MovePigMove.Tests.Controllers
             {
                 var invoker = new Mock<ICommandInvoker>();
                 var controller = new AddController(invoker.Object, null);
-                var input = new AddStrengthInputModel {ExerciseId = "ex/2", Notes = "f", Repetitions = 10, Weight = 185};
+                var input = new AddStrengthInputModel {ExerciseId = 2, Notes = "f", Repetitions = 10, Weight = 185};
 
                 var result = controller.Strength(input);
 
@@ -76,7 +76,7 @@ namespace MovePigMove.Tests.Controllers
             {
                 var invoker = new Mock<ICommandInvoker>();
                 var controller = new AddController(invoker.Object, null);
-                var input = new AddStrengthInputModel { ExerciseId = "ex/2", Notes = "f", Repetitions = 10, Weight = 185 };
+                var input = new AddStrengthInputModel { ExerciseId = 2, Notes = "f", Repetitions = 10, Weight = 185 };
 
                 var result = (RedirectToRouteResult)controller.Strength(input);
                 result.RouteValues["action"].ShouldEqual("Index");

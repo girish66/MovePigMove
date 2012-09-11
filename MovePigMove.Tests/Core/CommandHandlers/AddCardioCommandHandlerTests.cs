@@ -6,6 +6,7 @@ using MovePigMove.Core.CommandHandlers;
 using MovePigMove.Core.Commands;
 using MovePigMove.Core.Documents;
 using MovePigMove.Core.Entities;
+using MovePigMove.Core.Storage;
 using NUnit.Framework;
 using Should;
 
@@ -19,9 +20,12 @@ namespace MovePigMove.Tests.Core.CommandHandlers
         {
             var workOut = new Workout(new WorkoutDocument());
             var ws = new Mock<IWorkoutService>();
-            var handler = new AddCardioCommandHandler(ws.Object);
-            var command = new AddCardioCommand {Duration = 20, ExerciseId = "ex/1", Level = 99, Notes = "foo"};
+            var repo = new Mock<IExerciseRepository>();
+            var handler = new AddCardioCommandHandler(ws.Object, repo.Object);
+            var command = new AddCardioCommand {Duration = 20, ExerciseId = 1, Level = 99, Notes = "foo"};
+            
             ws.Setup(x => x.CurrentWorkout()).Returns(workOut);
+            repo.Setup(x => x.Load(1)).Returns(new Exercise(new ExerciseDocument {Description = "exer"}));
 
             handler.Handle(command);
 
@@ -32,8 +36,8 @@ namespace MovePigMove.Tests.Core.CommandHandlers
         public void IfThereIsNoCurrentWorkoutAnExceptionIsThrown()
         {
             var ws = new Mock<IWorkoutService>();
-            var handler = new AddCardioCommandHandler(ws.Object);
-            var command = new AddCardioCommand { Duration = 20, ExerciseId = "ex/1", Level = 99, Notes = "foo" };
+            var handler = new AddCardioCommandHandler(ws.Object, null);
+            var command = new AddCardioCommand { Duration = 20, ExerciseId = 1, Level = 99, Notes = "foo" };
             ws.Setup(x => x.CurrentWorkout()).Returns<Workout>(null);
 
             Assert.Throws<ApplicationException>(() => handler.Handle(command));
