@@ -40,11 +40,29 @@
     </table>
 }
 
-
-@foreach(var c in Model.Strength)
+@if (Model.Strength.Any())
 {
-    @c.ExerciseId <text>-</text> @c.Repetitions <text>-</text> @c.Weight <text>-</text> @c.Notes <text>-</text> @c.PerformedAt.ToString() <br />
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Weight</th>
+                <th>Reps</th>
+                <th>Notes</th>
+            </tr>
+        </thead>
+        @foreach(var s in Model.Strength)
+        {
+            <tr>
+                <td>@s.ExerciseDescription</td>
+                <td>@s.Weight</td>
+                <td>@s.Repetitions</td>
+                <td>@s.Notes</td>
+            </tr>
+        }
+    </table>
 }
+
 
 @if(Model.PromptForEnd)
 {
