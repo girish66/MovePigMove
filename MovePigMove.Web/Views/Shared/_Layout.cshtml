@@ -30,12 +30,16 @@
         </header>
         <div id="body">
             @RenderSection("featured", required: false)
-            <section class="content-wrapper main-content clear-fix">
-                @RenderBody()
-            </section>
-            
-           @Html.Action("_Summary", "Workout");
-
+            <div id="body-content"  class="content-wrapper main-content clear-fix">
+                <div id="body-left-column" style="float: left;">
+                    <section>
+                        @RenderBody()
+                    </section>
+                </div>
+                <div id="body-right-column" style="float: right;">
+                    @Html.Action("_Summary", "Workout")
+                </div>
+            </div>
         </div>
         <footer>
             <div class="content-wrapper">

@@ -17,7 +17,6 @@
     <text>Ended at </text>@Model.EndDate<br/>     
 }
 
-
 @if (Model.Cardio.Any())
 {
     <table>
@@ -32,7 +31,7 @@
         @foreach(var c in Model.Cardio)
         {
             <tr>
-                <td>@c.ExerciseId</td>
+                <td>@c.ExerciseDescription</td>
                 <td>@c.Level</td>
                 <td>@c.Duration</td>
                 <td>@c.Notes</td>
@@ -42,18 +41,10 @@
 }
 
 
-
-@foreach(var c in Model.Cardio)
-{
-    @c.ExerciseId <text>-</text> @c.Duration <text>-</text> @c.Level <text>-</text> @c.Notes <text>-</text> @c.PerformedAt.ToString() <br />
-}
-
-
 @foreach(var c in Model.Strength)
 {
     @c.ExerciseId <text>-</text> @c.Repetitions <text>-</text> @c.Weight <text>-</text> @c.Notes <text>-</text> @c.PerformedAt.ToString() <br />
 }
-
 
 @if(Model.PromptForEnd)
 {
