@@ -21,7 +21,7 @@ namespace MovePigMove.Core.ViewModels
                     Cardio = wk.CardioSegments.ToList(),
                     Strength = wk.StrengthSegments.ToList(),
                     EndDate = wk.EndDate,
-                    StartDate = wk.StartDate
+                    StartDate = wk.StartDate,
                 };
 
         }

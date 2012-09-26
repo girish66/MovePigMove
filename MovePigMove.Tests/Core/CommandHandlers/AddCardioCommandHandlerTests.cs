@@ -36,8 +36,10 @@ namespace MovePigMove.Tests.Core.CommandHandlers
         public void IfThereIsNoCurrentWorkoutAnExceptionIsThrown()
         {
             var ws = new Mock<IWorkoutService>();
-            var handler = new AddCardioCommandHandler(ws.Object, null);
+            var repo = new Mock<IExerciseRepository>();
+            var handler = new AddCardioCommandHandler(ws.Object, repo.Object);
             var command = new AddCardioCommand { Duration = 20, ExerciseId = 1, Level = 99, Notes = "foo" };
+            repo.Setup(x => x.Load(1)).Returns(new Exercise(new ExerciseDocument { Description = "exer" }));
             ws.Setup(x => x.CurrentWorkout()).Returns<Workout>(null);
 
             Assert.Throws<ApplicationException>(() => handler.Handle(command));

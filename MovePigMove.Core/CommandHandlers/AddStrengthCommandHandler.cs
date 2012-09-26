@@ -10,9 +10,10 @@ namespace MovePigMove.Core.CommandHandlers
         private readonly IWorkoutService _workoutService;
         private readonly IExerciseRepository _exerciseRepository;
 
-        public AddStrengthCommandHandler(IWorkoutService workoutService)
+        public AddStrengthCommandHandler(IWorkoutService workoutService, IExerciseRepository exerciseRepository)
         {
             _workoutService = workoutService;
+            _exerciseRepository = exerciseRepository;
         }
 
         public void Handle(AddStrengthCommand command)
